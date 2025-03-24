@@ -1,0 +1,68 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - weather
+  - want_hotel
+  - date
+  - location
+  - validation
+
+entities:
+   - date_entity
+   - location_entity
+
+slots:
+  date_slot:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: date_entity
+  location_slot:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: location_entity
+
+
+responses:
+  utter_greet:
+  - text: "Salut ! Comment ça va ?"
+
+  utter_cheer_up:
+  - text: "Voici quelque chose pour te remonter le moral :"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Cela t'a-t-il aidé ?"
+
+  utter_happy:
+  - text: "Super, continue comme ça !"
+
+  utter_goodbye:
+  - text: "Au revoir"
+
+  utter_iamabot:
+  - text: "Je suis un bot, propulsé par Rasa."
+
+  utter_weather:
+    - text: "Voici les prévisions météo pour aujourd'hui."
+
+  utter_where:
+    - text: "Où ?"
+
+  utter_which_date:
+    - text: "Quelle date ?"
+
+  utter_summarize:
+    - text : "Si j'ai bien compris vous voulez réserver un hôtel le {date_slot} à {location_slot}"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

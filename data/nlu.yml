@@ -1,0 +1,190 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - salut
+    - bonjour
+    - coucou
+    - hello
+    - bonsoir
+    - hé
+    - allô
+    - salut à toi
+    - allons-y
+    - hé mec
+    - bonjour (matin)
+    - bonsoir (soirée)
+    - bon après-midi
+
+- intent: goodbye
+  examples: |
+    - à plus
+    - au revoir
+    - à bientôt
+    - bonne nuit
+    - bye
+    - adieu
+    - passe une bonne journée
+    - à la prochaine
+    - bye bye
+    - à tout à l'heure
+
+- intent: affirm
+  examples: |
+    - oui
+    - d'accord
+    - en effet
+    - bien sûr
+    - ça me va
+    - correct
+
+- intent: deny
+  examples: |
+    - non
+    - nope
+    - jamais
+    - je ne pense pas
+    - ça ne me plaît pas
+    - pas question
+    - pas vraiment
+
+- intent: mood_great
+  examples: |
+    - parfait
+    - super
+    - génial
+    - je me sens comme un roi
+    - merveilleux
+    - je me sens très bien
+    - je suis au top
+    - je suis incroyable
+    - je vais sauver le monde
+    - hyper enthousiaste
+    - extrêmement bien
+    - tellement parfait
+    - tellement bien
+
+- intent: mood_unhappy
+  examples: |
+    - ma journée a été horrible
+    - je suis triste
+    - je ne me sens pas bien
+    - je suis déçu
+    - super triste
+    - je suis tellement triste
+    - triste
+    - très triste
+    - malheureux
+    - pas bien
+    - pas très bien
+    - extrêmement triste
+    - tellement triste
+
+- intent: bot_challenge
+  examples: |
+    - es-tu un bot ?
+    - es-tu humain ?
+    - suis-je en train de parler à un bot ?
+    - suis-je en train de parler à un humain ?
+
+- intent: weather
+  examples: |
+    - quel temps fait-il aujourd'hui ?
+    - donne-moi la météo de Paris
+    - est-ce qu'il va pleuvoir ?
+    - comment est le temps ?
+    - quelle est la météo ?
+    - il fait beau ?
+    - fait-il froid ?
+    - y a-t-il du soleil ?
+    - va-t-il neiger ?
+    - quelle est la température ?
+
+- intent: want_hotel
+  examples: |
+    - je voudrais réserver un hotel
+    - je cherche un hotel
+    - peux-tu m’aider à trouver un hôtel ?
+    - je veux un hôtel pour ce week-end
+    - un hôtel pas trop cher s’il te plaît
+    - est-ce qu’il y a un hôtel disponible ?
+    - trouve-moi un hôtel confortable
+    - je veux réserver un hébergement
+    - je veux un hôtel pour deux personnes
+    - je veux une chambre pour une nuit
+    - un hôtel dans le coin ?
+    - je veux une chambre d'hôtel
+    - où puis-je dormir cette nuit ?
+    - cherche un hôtel sympa
+
+- intent: date
+  examples: |
+    - le [2 janvier 2024](date_entity)
+    - le [14 avril 1999](date_entity)
+    - pour le [12 mars 2025](date_entity)
+    - à partir du [1er juillet 2024](date_entity)
+    - le [25 décembre 2023](date_entity)
+    - j’arriverai le [5 juin 2025](date_entity)
+    - je veux réserver pour le [8 août 2024](date_entity)
+    - départ le [19 septembre 2024](date_entity)
+    - check-in le [30 octobre 2025](date_entity)
+    - séjour du [3 novembre 2023](date_entity)
+
+- intent: location
+  examples: |
+    - à [Le Havre](location_entity)
+    - à [Aix-en-Provence](location_entity)
+    - je cherche un hôtel à [Saint-Étienne](location_entity)
+    - séjour prévu à [La Roche-sur-Yon](location_entity)
+    - je vais à [Côte-d'Or](location_entity)
+    - un hôtel à [Villeneuve-la-Garenne](location_entity)
+    - tu connais [Clermont-Ferrand](location_entity) ?
+    - dormir à [Île-de-Ré](location_entity)
+    - à [Chalon-sur-Saône](location_entity)
+    - je veux aller à [La Grande-Motte](location_entity)
+    - un hôtel sur [Île d’Oléron](location_entity)
+    - pour [Saint-Rémy-de-Provence](location_entity)
+    - loger à [Font-Romeu-Odeillo-Via](location_entity)
+    - à [Saint-Laurent-du-Var](location_entity)
+
+- regex: date_entity
+  examples: |
+    - \d{1,2}\s+(?:janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)\s+\d{4}
+
+- regex: location_entity
+  examples: |
+    - [A-ZÉÈÀÙÎÏÔÖËÇ][a-zéèàùîïôöëç\-']+(?:\s(?:[a-zéèàùîïôöëç\-']+|[A-ZÉÈÀÙÎÏÔÖËÇ][a-zéèàùîïôöëç\-']+))*
+
+- lookup: location_entity
+  examples: |
+    - Paris
+    - Lyon
+    - Marseille
+    - Toulouse
+    - Nice
+    - Nantes
+    - Montpellier
+    - Strasbourg
+    - Bordeaux
+    - Lille
+    - Rennes
+    - Grenoble
+    - Dijon
+    - Avignon
+    - Reims
+
+- lookup: hotel_synonyms
+  examples: |
+    - hôtel
+    - hébergement
+    - chambre
+    - logement
+    - auberge
+    - résidence
+    - appart-hôtel
+
+- intent: validation
+  examples: |
+    - oui
+    - yes

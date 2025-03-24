@@ -1,0 +1,52 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: weather inquiry
+  steps:
+  - intent: weather
+  - action: utter_weather
+
+- story: hotel reservation
+  steps:
+    - intent : want_hotel
+    - action : utter_which_date
+    - intent : date
+    - action : utter_where
+    - intent: location
+    - action : utter_summarize
+    - intent : validation
+
+- story: restaurant reservation
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - action: restaurant_action_choice
+
