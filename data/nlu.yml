@@ -197,3 +197,75 @@ nlu:
   examples: |
     - oui
     - yes
+
+# Réservation restaurant
+
+- intent: reserve_table
+  examples: |
+    - Je veux réserver une table
+    - Réserver une table pour ce soir
+    - Puis-je réserver une table ?
+
+- intent: provide_date
+  examples: |
+    - Demain à 20h
+    - Le 25 mars
+    - Ce soir
+    - Vendredi prochain
+
+- intent: provide_people_count
+  examples: |
+    - Pour 2 personnes
+    - On est 4
+    - Nous serons 6
+
+- intent: provide_name
+  examples: |
+    - C'est au nom de Martin
+    - Réservation pour Sophie
+    - Mon nom est Dupont
+
+- intent: provide_phone
+  examples: |
+    - 0612345678
+    - Mon numéro est le 0755667788
+
+- intent: add_comment
+  examples: |
+    - C'est pour un anniversaire
+    - Nous serons en retard
+    - Je suis allergique aux noix
+
+- intent: check_reservation
+  examples: |
+    - Je veux voir ma réservation
+    - Consulter ma réservation
+    - Quels sont les détails de ma réservation ?
+
+- intent: cancel_reservation
+  examples: |
+    - Je veux annuler ma réservation
+    - Annule la réservation
+    - Supprimer ma réservation
+
+- intent: provide_reservation_number
+  examples: |
+    - Mon numéro de réservation est 123ABC
+    - C’est le 456XYZ
+
+- intent: show_menu
+  examples: |
+    - Quel est le menu du jour ?
+    - Montre-moi le menu
+    - Quels sont les plats aujourd’hui ?
+
+- intent: show_allergens
+  examples: |
+    - Quels sont les allergènes ?
+    - Y a-t-il des plats avec du gluten ?
+    - Liste des allergènes ?
+
+- intent: show_full_menu
+  examples: |
+    - Où est le menu complet ?
+    - Donne-moi le lien vers le menu complet
