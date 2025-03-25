@@ -15,8 +15,25 @@ intents:
   - validation
 
 entities:
-   - date_entity
-   - location_entity
+    - date_entity
+    - location_entity
+    - date
+    - people
+    - name
+    - phone
+    - reservation_number
+    - comment
+
+actions:
+  - action_check_availability
+  - action_generate_reservation
+  - action_confirm_reservation
+  - action_add_comment
+  - action_show_reservation
+  - action_cancel_reservation
+  - action_show_menu
+  - action_show_allergens
+  - action_show_full_menu
 
 slots:
   date_slot:
@@ -29,6 +46,36 @@ slots:
     mappings:
       - type: from_entity
         entity: location_entity
+  date:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: date
+  people:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: people
+  name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: name
+  phone:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: phone
+  reservation_number:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: reservation_number
+  comment:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: comment
 
 
 responses:
