@@ -154,25 +154,34 @@ nlu:
 
 - regex: location_entity
   examples: |
-    - [A-ZÉÈÀÙÎÏÔÖËÇ][a-zéèàùîïôöëç\-']+(?:\s(?:[a-zéèàùîïôöëç\-']+|[A-ZÉÈÀÙÎÏÔÖËÇ][a-zéèàùîïôöëç\-']+))*
+      - (?:[A-ZÉÈÀÙÎÏÔÖËÇ][a-zéèàùîïôöëç\-']+\s?)+
 
 - lookup: location_entity
   examples: |
     - Paris
     - Lyon
     - Marseille
-    - Toulouse
-    - Nice
-    - Nantes
-    - Montpellier
-    - Strasbourg
-    - Bordeaux
-    - Lille
-    - Rennes
-    - Grenoble
-    - Dijon
-    - Avignon
-    - Reims
+    - Le Havre
+    - La Rochelle
+    - Aix-en-Provence
+    - Boulogne-Billancourt
+    - L'Isle-sur-la-Sorgue
+    - D'Aubagne
+    - Saint-Étienne
+    - Saint-Jean-de-Luz
+    - Saint-Rémy-de-Provence
+    - Villeneuve-la-Garenne
+    - Chalon-sur-Saône
+    - Neuilly-sur-Seine
+    - Saint-Laurent-du-Var
+    - Cagnes-sur-Mer
+    - Mont-Saint-Aignan
+    - La Roche-sur-Yon
+    - Vitry-sur-Seine
+    - Fort-de-France
+    - L'Épine
+    - Île-de-Ré
+    - L’Haÿ-les-Roses
 
 - lookup: hotel_synonyms
   examples: |

@@ -44,9 +44,3 @@ stories:
     - action : utter_summarize
     - intent : validation
 
-- story: restaurant reservation
-  steps:
-    - intent: greet
-    - action: utter_greet
-    - action: restaurant_action_choice
-
