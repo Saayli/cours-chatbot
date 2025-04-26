@@ -1,271 +1,306 @@
 version: "3.1"
 
 nlu:
-- intent: greet
-  examples: |
-    - salut
-    - bonjour
-    - coucou
-    - hello
-    - bonsoir
-    - hé
-    - allô
-    - salut à toi
-    - allons-y
-    - hé mec
-    - bonjour (matin)
-    - bonsoir (soirée)
-    - bon après-midi
+  # Intents généraux
+  - intent: greet
+    examples: |
+      - salut
+      - bonjour
+      - coucou
+      - hé
+      - allô
+      - hello
+      - bonsoir
+      - salut à toi
+      - hey
+      - bonne matinée
 
-- intent: goodbye
-  examples: |
-    - à plus
-    - au revoir
-    - à bientôt
-    - bonne nuit
-    - bye
-    - adieu
-    - passe une bonne journée
-    - à la prochaine
-    - bye bye
-    - à tout à l'heure
+  - intent: goodbye
+    examples: |
+      - au revoir
+      - à bientôt
+      - bye
+      - à plus tard
+      - bonne journée
+      - bonne soirée
+      - passe une bonne soirée
+      - à la prochaine
+      - bye bye
+      - adieu
 
-- intent: affirm
-  examples: |
-    - oui
-    - d'accord
-    - en effet
-    - bien sûr
-    - ça me va
-    - correct
+  - intent: affirm
+    examples: |
+      - oui
+      - d'accord
+      - bien sûr
+      - tout à fait
+      - exact
+      - effectivement
+      - naturellement
+      - parfaitement
+      - absolument
+      - sans problème
 
-- intent: deny
-  examples: |
-    - non
-    - nope
-    - jamais
-    - je ne pense pas
-    - ça ne me plaît pas
-    - pas question
-    - pas vraiment
+  - intent: deny
+    examples: |
+      - non
+      - pas vraiment
+      - nope
+      - jamais
+      - je ne pense pas
+      - en aucun cas
+      - négatif
+      - que nenni
+      - non merci
+      - hors de question
 
-- intent: mood_great
-  examples: |
-    - parfait
-    - super
-    - génial
-    - je me sens comme un roi
-    - merveilleux
-    - je me sens très bien
-    - je suis au top
-    - je suis incroyable
-    - je vais sauver le monde
-    - hyper enthousiaste
-    - extrêmement bien
-    - tellement parfait
-    - tellement bien
+  - intent: mood_great
+    examples: |
+      - super
+      - génial
+      - je vais très bien
+      - je suis au top
+      - fantastique
+      - excellent
+      - merveilleux
+      - extra
+      - tip top
+      - au meilleur
 
-- intent: mood_unhappy
-  examples: |
-    - ma journée a été horrible
-    - je suis triste
-    - je ne me sens pas bien
-    - je suis déçu
-    - super triste
-    - je suis tellement triste
-    - triste
-    - très triste
-    - malheureux
-    - pas bien
-    - pas très bien
-    - extrêmement triste
-    - tellement triste
+  - intent: mood_unhappy
+    examples: |
+      - pas très bien
+      - je suis triste
+      - ça ne va pas
+      - déprimé
+      - un peu mal
+      - mauvaise journée
+      - je suis stressé
+      - je ne suis pas bien
+      - un peu déçu
+      - pas en forme
 
-- intent: bot_challenge
-  examples: |
-    - es-tu un bot ?
-    - es-tu humain ?
-    - suis-je en train de parler à un bot ?
-    - suis-je en train de parler à un humain ?
+  - intent: bot_challenge
+    examples: |
+      - es-tu un bot ?
+      - tu es un robot ?
+      - suis-je en train de parler à un humain ?
+      - est-ce que tu es réel ?
+      - tu es humain ?
+      - me réponds-tu automatiquement ?
+      - tu fonctionnes comment ?
+      - qui es-tu ?
+      - devrais-je parler à un humain ?
+      - c'est quoi ton système ?
 
-- intent: weather
-  examples: |
-    - quel temps fait-il aujourd'hui ?
-    - donne-moi la météo de Paris
-    - est-ce qu'il va pleuvoir ?
-    - comment est le temps ?
-    - quelle est la météo ?
-    - il fait beau ?
-    - fait-il froid ?
-    - y a-t-il du soleil ?
-    - va-t-il neiger ?
-    - quelle est la température ?
+  - intent: weather
+    examples: |
+      - quel temps fait-il aujourd'hui ?
+      - donne-moi la météo de Paris
+      - est-ce qu'il va pleuvoir ?
+      - fait-il beau dehors ?
+      - quelle est la température ?
+      - météo s'il te plaît
+      - temps qu'il fait ?
+      - aura-t-on du soleil ?
+      - faut-il un parapluie ?
+      - temps prévu ?
 
-- intent: want_hotel
-  examples: |
-    - je voudrais réserver un hotel
-    - je cherche un hotel
-    - peux-tu m’aider à trouver un hôtel ?
-    - je veux un hôtel pour ce week-end
-    - un hôtel pas trop cher s’il te plaît
-    - est-ce qu’il y a un hôtel disponible ?
-    - trouve-moi un hôtel confortable
-    - je veux réserver un hébergement
-    - je veux un hôtel pour deux personnes
-    - je veux une chambre pour une nuit
-    - un hôtel dans le coin ?
-    - je veux une chambre d'hôtel
-    - où puis-je dormir cette nuit ?
-    - cherche un hôtel sympa
+  # Réservation : date (absolues & relatives)
+  - intent: provide_date
+    examples: |
+      - [02/05/2025](date_entity)
+      - [2/5/25](date_entity)
+      - le [2 mai 2025](date_entity)
+      - le [25/12](date_entity)
+      - le [1er janvier](date_entity)
+      - aujourd'hui
+      - demain
+      - ce soir
+      - vendredi prochain
+      - lundi matin
 
-- intent: date
-  examples: |
-    - le [2 janvier 2024](date_entity)
-    - le [14 avril 1999](date_entity)
-    - pour le [12 mars 2025](date_entity)
-    - à partir du [1er juillet 2024](date_entity)
-    - le [25 décembre 2023](date_entity)
-    - j’arriverai le [5 juin 2025](date_entity)
-    - je veux réserver pour le [8 août 2024](date_entity)
-    - départ le [19 septembre 2024](date_entity)
-    - check-in le [30 octobre 2025](date_entity)
-    - séjour du [3 novembre 2023](date_entity)
+  # Réservation : heure
+  - intent: provide_time
+    examples: |
+      - à [19h](time_entity)
+      - [20h30](time_entity)
+      - vers [21h](time_entity)
+      - à [07:15](time_entity)
+      - [7h](time_entity)
+      - à [12h45](time_entity)
+      - [8h00](time_entity)
+      - vers [18h30](time_entity)
+      - [23h59](time_entity)
+      - à [6h](time_entity)
 
-- intent: location
-  examples: |
-    - à [Le Havre](location_entity)
-    - à [Aix-en-Provence](location_entity)
-    - je cherche un hôtel à [Saint-Étienne](location_entity)
-    - séjour prévu à [La Roche-sur-Yon](location_entity)
-    - je vais à [Côte-d'Or](location_entity)
-    - un hôtel à [Villeneuve-la-Garenne](location_entity)
-    - tu connais [Clermont-Ferrand](location_entity) ?
-    - dormir à [Île-de-Ré](location_entity)
-    - à [Chalon-sur-Saône](location_entity)
-    - je veux aller à [La Grande-Motte](location_entity)
-    - un hôtel sur [Île d’Oléron](location_entity)
-    - pour [Saint-Rémy-de-Provence](location_entity)
-    - loger à [Font-Romeu-Odeillo-Via](location_entity)
-    - à [Saint-Laurent-du-Var](location_entity)
+  # Réservation : nombre de personnes
+  - intent: provide_people_count
+    examples: |
+      - pour [2](people) personnes
+      - on est [4](people)
+      - nous serons [6](people)
+      - table pour [3](people)
+      - réservation pour [5](people)
+      - [1](people) personne
+      - [8](people) personnes
+      - on est [10](people)
+      - pour [7](people) convives
+      - je suis [2](people)
 
-- regex: date_entity
-  examples: |
-    - \d{1,2}\s+(?:janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)\s+\d{4}
+  - intent: provide_name
+    examples: |
+      - au nom de [Martin](name)
+      - c'est pour [Sophie](name)
+      - mon nom est [Dupont](name)
+      - indique [Durand](name)
+      - réserver pour [Jean-Paul](name)
+      - nom de réservation : [Bernard](name)
+      - c'est [Alice](name)
+      - écris [Charles](name)
+      - mettre sous [Éléonore](name)
+      - réservation pour [Thomas](name)
 
-- regex: location_entity
-  examples: |
-      - (?:[A-ZÉÈÀÙÎÏÔÖËÇ][a-zéèàùîïôöëç\-']+\s?)+
+  - intent: provide_phone
+    examples: |
+      - mon numéro est le [0612345678](phone_number)
+      - appelez-moi au [0755667788](phone_number)
+      - mon tel : [0623456789](phone_number)
+      - voici mon numéro [0634567890](phone_number)
+      - [0645678901](phone_number) est mon numéro
+      - téléphone : [0656789012](phone_number)
+      - contact : [0667890123](phone_number)
+      - joignez-moi au [0678901234](phone_number)
+      - mon portable est le [0689012345](phone_number)
+      - numéro à contacter : [0690123456](phone_number)
 
-- lookup: location_entity
-  examples: |
-    - Paris
-    - Lyon
-    - Marseille
-    - Le Havre
-    - La Rochelle
-    - Aix-en-Provence
-    - Boulogne-Billancourt
-    - L'Isle-sur-la-Sorgue
-    - D'Aubagne
-    - Saint-Étienne
-    - Saint-Jean-de-Luz
-    - Saint-Rémy-de-Provence
-    - Villeneuve-la-Garenne
-    - Chalon-sur-Saône
-    - Neuilly-sur-Seine
-    - Saint-Laurent-du-Var
-    - Cagnes-sur-Mer
-    - Mont-Saint-Aignan
-    - La Roche-sur-Yon
-    - Vitry-sur-Seine
-    - Fort-de-France
-    - L'Épine
-    - Île-de-Ré
-    - L’Haÿ-les-Roses
+  - intent: reserve_table
+    examples: |
+      - je veux réserver une table
+      - puis-je réserver pour ce soir ?
+      - je voudrais une table pour deux
+      - réservation s'il vous plaît
+      - peux-tu me réserver une table ?
+      - j'aimerais réserver
+      - réservez-moi une table
+      - table pour quatre s'il vous plaît
+      - est-ce possible de réserver ?
+      - je veux booker une table
 
-- lookup: hotel_synonyms
-  examples: |
-    - hôtel
-    - hébergement
-    - chambre
-    - logement
-    - auberge
-    - résidence
-    - appart-hôtel
+  - intent: add_comment
+    examples: |
+      - [C'est pour un anniversaire](comment)
+      - [Nous serons en retard](comment)
+      - [Allergie aux noix](comment)
+      - [Table près de la fenêtre](comment)
+      - [Cadeau surprise](comment)
+      - [Joyeux anniversaire](comment)
+      - [On fête un mariage](comment)
+      - [C'est un dîner d'affaires](comment)
+      - [Pas de gluten](comment)
+      - [Table calme s'il vous plaît](comment)
 
-- intent: validation
-  examples: |
-    - oui
-    - yes
+  - intent: check_reservation
+    examples: |
+      - je veux voir ma réservation
+      - consulter ma réservation
+      - montre-moi ma réservation
+      - afficher ma réservation
+      - quels sont les détails de ma réservation ?
+      - je veux les infos de ma résa
+      - où est ma réservation ?
+      - voir ma réservation
+      - affiche ma réservation
+      - vérifie ma réservation
 
-# Réservation restaurant
+  - intent: cancel_reservation
+    examples: |
+      - je veux annuler ma réservation
+      - annule la réservation
+      - supprime ma réservation
+      - désinscris ma table
+      - annulation de ma réservation
+      - j'aimerais annuler
+      - retire ma réservation
+      - annule ma table
+      - cancel reservation
+      - mets fin à ma réservation
 
-- intent: reserve_table
-  examples: |
-    - Je veux réserver une table
-    - Réserver une table pour ce soir
-    - Puis-je réserver une table ?
+  - intent: provide_reservation_number
+    examples: |
+      - mon numéro de réservation est [123ABC](reservation_number)
+      - c'est le [456XYZ](reservation_number)
+      - voici le numéro [789DEF](reservation_number)
+      - réservation [ABC123](reservation_number)
+      - code [XYZ456](reservation_number)
+      - numéro [DEF789](reservation_number)
+      - ma résa est [GHI012](reservation_number)
+      - référence [JKL345](reservation_number)
+      - id [MNO678](reservation_number)
+      - mon code de réservation : [PQR901](reservation_number)
 
-- intent: provide_date
-  examples: |
-    - Demain à 20h
-    - Le 25 mars
-    - Ce soir
-    - Vendredi prochain
+  - intent: show_menu
+    examples: |
+      - quel est le menu du jour ?
+      - montre-moi le menu
+      - menu du jour
+      - que proposez-vous aujourd'hui ?
+      - plats du jour
+      - qu'y a-t-il dans le menu ?
+      - menu s'il vous plaît
+      - veux voir le menu
+      - afficher le menu
+      - menu disponible ?
 
-- intent: provide_people_count
-  examples: |
-    - Pour 2 personnes
-    - On est 4
-    - Nous serons 6
+  - intent: show_allergens
+    examples: |
+      - quels sont les allergènes ?
+      - allergènes disponibles
+      - y a-t-il du gluten ?
+      - liste des allergènes
+      - plats sans lactose ?
+      - allergènes ?
+      - substances allergènes
+      - info allergènes
+      - présence de fruits à coque ?
+      - quels allergènes ?
 
-- intent: provide_name
-  examples: |
-    - C'est au nom de Martin
-    - Réservation pour Sophie
-    - Mon nom est Dupont
+  - intent: show_full_menu
+    examples: |
+      - donne-moi le menu complet
+      - lien vers le menu complet
+      - où est le menu complet ?
+      - menu complet s'il vous plaît
+      - accéder au menu complet
+      - menu intégral
+      - menu entier
+      - pdf du menu complet
+      - menu complet lien
+      - télécharger le menu complet
 
-- intent: provide_phone
-  examples: |
-    - 0612345678
-    - Mon numéro est le 0755667788
+  # Regex / lookup pour extraction d'entités
+  - regex: date_entity
+    examples: |
+      - "\\d{1,2}/\\d{1,2}(?:/\\d{2,4})?"
+      - "\\d{1,2}\\s+(?:janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)(?:\\s+\\d{2,4})?"
 
-- intent: add_comment
-  examples: |
-    - C'est pour un anniversaire
-    - Nous serons en retard
-    - Je suis allergique aux noix
+  - regex: time_entity
+    examples: |
+      - "(?:[01]?\\d|2[0-3])h(?:[0-5]\\d)?"
+      - "(?:[01]?\\d|2[0-3])[:.]\\d{2}"
 
-- intent: check_reservation
-  examples: |
-    - Je veux voir ma réservation
-    - Consulter ma réservation
-    - Quels sont les détails de ma réservation ?
+  - regex: people
+    examples: |
+      - "\\b[1-9][0-9]?\\b"
 
-- intent: cancel_reservation
-  examples: |
-    - Je veux annuler ma réservation
-    - Annule la réservation
-    - Supprimer ma réservation
+  - regex: phone_number
+    examples: |
+      - "\\b0[1-9]\\d{8}\\b"
 
-- intent: provide_reservation_number
-  examples: |
-    - Mon numéro de réservation est 123ABC
-    - C’est le 456XYZ
-
-- intent: show_menu
-  examples: |
-    - Quel est le menu du jour ?
-    - Montre-moi le menu
-    - Quels sont les plats aujourd’hui ?
-
-- intent: show_allergens
-  examples: |
-    - Quels sont les allergènes ?
-    - Y a-t-il des plats avec du gluten ?
-    - Liste des allergènes ?
-
-- intent: show_full_menu
-  examples: |
-    - Où est le menu complet ?
-    - Donne-moi le lien vers le menu complet
+  - lookup: relative_date
+    examples: |
+      - aujourd'hui
+      - demain
+      - ce soir
+      - vendredi prochain
+      - lundi matin

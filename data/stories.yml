@@ -1,102 +1,32 @@
 version: "3.1"
 
 stories:
-
-- story: happy path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
-
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
-
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
-
-- story: weather inquiry
-  steps:
-  - intent: weather
-  - action: utter_weather
-
-- story: hotel reservation
-  steps:
-    - intent : want_hotel
-    - action : utter_which_date
-    - intent : date
-    - action : utter_where
-    - intent: location
-    - action : utter_summarize
-    - intent : validation
-
-- story: restaurant reservation
+- story: accueillir l'utilisateur
   steps:
     - intent: greet
     - action: utter_greet
-    - action: restaurant_action_choice
-
-- story: Réserver une table avec commentaire
-  steps:
-    - intent: greet
-    - action: utter_greet
-    - intent: reserve_table
-    - action: utter_ask_date
-    - intent: provide_date
-    - action: utter_ask_people
-    - intent: provide_people_count
-    - action: utter_ask_name
-    - intent: provide_name
-    - action: utter_ask_phone
-    - intent: provide_phone
-    - action: action_check_availability
-    - checkpoint: availability_checked
-
-- story: Réservation disponible + ajout commentaire
-  steps:
-    - checkpoint: availability_checked
-    - action: action_generate_reservation
-    - action: action_confirm_reservation
-    - action: utter_ask_comment
-    - intent: add_comment
-    - action: action_add_comment
-
-- story: Réservation non disponible
-  steps:
-    - checkpoint: availability_checked
-    - action: utter_reservation_unavailable
-
-- story: Consulter une réservation
+# --- consulter une réservation ---
+- story: consulter réservation
   steps:
     - intent: check_reservation
     - action: utter_ask_reservation_number
     - intent: provide_reservation_number
     - action: action_show_reservation
 
-- story: Annuler une réservation
+# --- annuler une réservation ---
+- story: annuler réservation
   steps:
     - intent: cancel_reservation
     - action: utter_ask_reservation_number
     - intent: provide_reservation_number
     - action: action_cancel_reservation
 
-- story: Afficher le menu complet
+# --- afficher menu & allergènes ---
+- story: afficher menu et allergènes
   steps:
     - intent: show_menu
     - action: action_show_menu
+    - intent: show_allergens
     - action: action_show_allergens
+    - intent: show_full_menu
     - action: action_show_full_menu
