@@ -72,12 +72,18 @@ slots:
       - type: from_entity
         entity: comment
 
+  reservation_number:
+    type: text
+    mappings:
+      - type: custom
+
 # Le formulaire de réservation
 forms:
   reservation_form:
     required_slots:
       - date
       - time
+      - people
       - name
       - phone_number
 
@@ -112,7 +118,7 @@ responses:
     - text: "Pour combien de personnes ?"
   utter_ask_name:
     - text: "À quel nom dois-je enregistrer la réservation ?"
-  utter_ask_phone:
+  utter_ask_phone_number:
     - text: "Pouvez-vous me donner un numéro de téléphone ?"
   utter_ask_comment:
     - text: "Souhaitez-vous ajouter un commentaire à votre réservation ?"
