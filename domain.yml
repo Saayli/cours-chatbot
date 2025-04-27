@@ -1,114 +1,150 @@
 version: "3.1"
+language: fr
 
 intents:
   - greet
   - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
   - bot_challenge
   - weather
-  - want_hotel
-  - date
-  - location
-  - validation
+
+  - reserve_table
+  - provide_date
+  - provide_time
+  - provide_people_count
+  - provide_name
+  - provide_phone
+  - add_comment
+
+  - check_reservation
+  - cancel_reservation
+  - provide_reservation_number
+
+  - show_menu
+  - show_allergens
+  - show_full_menu
 
 entities:
-    - date_entity
-    - location_entity
-    - date
-    - people
-    - name
-    - phone
-    - reservation_number
-    - comment
-
-actions:
-  - action_check_availability
-  - action_generate_reservation
-  - action_confirm_reservation
-  - action_add_comment
-  - action_show_reservation
-  - action_cancel_reservation
-  - action_show_menu
-  - action_show_allergens
-  - action_show_full_menu
+  - date_entity
+  - relative_date
+  - time_entity
+  - people
+  - name
+  - phone_number
+  - comment
+  - reservation_number
 
 slots:
-  date_slot:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: date_entity
-  location_slot:
-    type: text
-    mappings:
-      - type: from_entity
-        entity: location_entity
   date:
     type: text
     mappings:
       - type: from_entity
-        entity: date
+        entity: date_entity
+      - type: from_entity
+        entity: relative_date
+
+  time:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: time_entity
+
   people:
     type: text
     mappings:
       - type: from_entity
         entity: people
+
   name:
     type: text
     mappings:
       - type: from_entity
         entity: name
-  phone:
+
+  phone_number:
     type: text
     mappings:
       - type: from_entity
-        entity: phone
-  reservation_number:
-    type: text
-    mappings:
-      - type: from_entity
-        entity: reservation_number
+        entity: phone_number
+
   comment:
     type: text
     mappings:
       - type: from_entity
         entity: comment
 
+  reservation_number:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: reservation_number
+
+# formulaire de réservation
+forms:
+  reservation_form:
+    required_slots:
+      - date
+      - time
+      - people
+      - name
+      - phone_number
 
 responses:
   utter_greet:
-  - text: "Salut ! Comment ça va ?"
-
-  utter_cheer_up:
-  - text: "Voici quelque chose pour te remonter le moral :"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Cela t'a-t-il aidé ?"
-
-  utter_happy:
-  - text: "Super, continue comme ça !"
-
-  utter_goodbye:
-  - text: "Au revoir"
+    - text: "Bonjour et bienvenue au restaurant ! Que puis-je faire pour vous aujourd'hui ?"
 
   utter_iamabot:
-  - text: "Je suis un bot, propulsé par Rasa."
+    - text: "Je suis un bot, propulsé par Rasa."
 
   utter_weather:
     - text: "Voici les prévisions météo pour aujourd'hui."
 
-  utter_where:
-    - text: "Où ?"
+  utter_cheer_up:
+    - text: "Voici quelque chose pour te remonter le moral 😊"
 
-  utter_which_date:
-    - text: "Quelle date ?"
+  utter_did_that_help:
+    - text: "Est-ce que cela vous aide ?"
 
-  utter_summarize:
-    - text : "Si j'ai bien compris vous voulez réserver un hôtel le {date_slot} à {location_slot}"
+  utter_happy:
+    - text: "Super, continue comme ça !"
+
+  utter_goodbye:
+    - text: "Merci et à bientôt dans notre restaurant !"
+
+  # questions du formulaire
+  utter_ask_date:
+    - text: "Pour quelle date souhaitez-vous réserver ?"
+  utter_ask_time:
+    - text: "À quelle heure ?"
+  utter_ask_people:
+    - text: "Pour combien de personnes ?"
+  utter_ask_name:
+    - text: "À quel nom dois-je enregistrer la réservation ?"
+  utter_ask_phone_number:
+    - text: "Pouvez-vous me donner un numéro de téléphone ?"
+  utter_ask_comment:
+    - text: "Souhaitez-vous ajouter un commentaire à votre réservation ?"
+
+  utter_slots_values:
+    - text: |
+        D'accord, j'ai bien :
+        • Date : {date}  
+        • Heure : {time}  
+        • Personnes : {people}  
+        • Nom : {name}  
+        • Tél. : {phone_number}
+
+  # indication pour consulter
+  utter_ask_reservation_number:
+    - text: "Quel est votre numéro de réservation, s'il vous plaît ?"
+
+actions:
+  - action_submit_reservation
+  - action_add_comment
+  - action_show_reservation
+  - action_cancel_reservation
+  - action_show_menu
+  - action_show_allergens
+  - action_show_full_menu
 
 session_config:
   session_expiration_time: 60

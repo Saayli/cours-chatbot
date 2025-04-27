@@ -1,13 +1,46 @@
 version: "3.1"
 
 rules:
+  # ─────────────────────────────────────────────────────────────────────────────
+  # Répondre au salut
+  - rule: salut et réponse
+    steps:
+      - intent: greet
+      - action: utter_greet
 
-- rule: Say goodbye anytime the user says goodbye
-  steps:
-  - intent: goodbye
-  - action: utter_goodbye
+  # ─────────────────────────────────────────────────────────────────────────────
+  # démarrer le formulaire de réservation
+  - rule: démarrer réservation
+    steps:
+      - intent: reserve_table
+      - action: reservation_form
+      - active_loop: reservation_form
 
-- rule: Say 'I am a bot' anytime the user challenges
-  steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+  # remplir le form tant qu'il est actif
+  - rule: remplir le formulaire
+    condition:
+      - active_loop: reservation_form
+    steps:
+      - action: reservation_form
+      - active_loop: reservation_form
+
+  # soumettre le form une fois terminé
+  - rule: soumettre réservation
+    condition:
+      - active_loop: reservation_form
+    steps:
+      - action: reservation_form
+      - active_loop: null
+      - action: action_submit_reservation
+      - action: utter_slots_values
+      - action: utter_ask_comment
+
+  - rule: consulter réservation
+    steps:
+      - intent: check_reservation
+      - action: utter_ask_reservation_number
+
+  - rule: afficher réservation
+    steps:
+      - intent: provide_reservation_number
+      - action: action_show_reservation
