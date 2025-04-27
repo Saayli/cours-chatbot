@@ -25,7 +25,7 @@ intents:
 
 entities:
   - date_entity
-  - relative_date     # pour "demain", "aujourd'hui", etc.
+  - relative_date
   - time_entity
   - people
   - name
@@ -75,9 +75,10 @@ slots:
   reservation_number:
     type: text
     mappings:
-      - type: custom
+      - type: from_entity
+        entity: reservation_number
 
-# Le formulaire de réservation
+# formulaire de réservation
 forms:
   reservation_form:
     required_slots:
@@ -109,7 +110,7 @@ responses:
   utter_goodbye:
     - text: "Merci et à bientôt dans notre restaurant !"
 
-  # Questions du formulaire
+  # questions du formulaire
   utter_ask_date:
     - text: "Pour quelle date souhaitez-vous réserver ?"
   utter_ask_time:
@@ -123,7 +124,6 @@ responses:
   utter_ask_comment:
     - text: "Souhaitez-vous ajouter un commentaire à votre réservation ?"
 
-  # Confirmation finale
   utter_slots_values:
     - text: |
         D'accord, j'ai bien :
@@ -132,6 +132,10 @@ responses:
         • Personnes : {people}  
         • Nom : {name}  
         • Tél. : {phone_number}
+
+  # indication pour consulter
+  utter_ask_reservation_number:
+    - text: "Quel est votre numéro de réservation, s'il vous plaît ?"
 
 actions:
   - action_submit_reservation

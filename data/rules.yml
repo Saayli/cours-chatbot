@@ -34,3 +34,13 @@ rules:
       - action: action_submit_reservation
       - action: utter_slots_values
       - action: utter_ask_comment
+
+  - rule: consulter réservation
+    steps:
+      - intent: check_reservation
+      - action: utter_ask_reservation_number
+
+  - rule: afficher réservation
+    steps:
+      - intent: provide_reservation_number
+      - action: action_show_reservation

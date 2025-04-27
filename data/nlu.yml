@@ -54,58 +54,6 @@ nlu:
       - non merci
       - hors de question
 
-  - intent: mood_great
-    examples: |
-      - super
-      - génial
-      - je vais très bien
-      - je suis au top
-      - fantastique
-      - excellent
-      - merveilleux
-      - extra
-      - tip top
-      - au meilleur
-
-  - intent: mood_unhappy
-    examples: |
-      - pas très bien
-      - je suis triste
-      - ça ne va pas
-      - déprimé
-      - un peu mal
-      - mauvaise journée
-      - je suis stressé
-      - je ne suis pas bien
-      - un peu déçu
-      - pas en forme
-
-  - intent: bot_challenge
-    examples: |
-      - es-tu un bot ?
-      - tu es un robot ?
-      - suis-je en train de parler à un humain ?
-      - est-ce que tu es réel ?
-      - tu es humain ?
-      - me réponds-tu automatiquement ?
-      - tu fonctionnes comment ?
-      - qui es-tu ?
-      - devrais-je parler à un humain ?
-      - c'est quoi ton système ?
-
-  - intent: weather
-    examples: |
-      - quel temps fait-il aujourd'hui ?
-      - donne-moi la météo de Paris
-      - est-ce qu'il va pleuvoir ?
-      - fait-il beau dehors ?
-      - quelle est la température ?
-      - météo s'il te plaît
-      - temps qu'il fait ?
-      - aura-t-on du soleil ?
-      - faut-il un parapluie ?
-      - temps prévu ?
-
   # Réservation : date (absolues & relatives)
   - intent: provide_date
     examples: |
@@ -155,11 +103,9 @@ nlu:
       - mon nom est [Dupont](name)
       - indique [Durand](name)
       - réserver pour [Jean-Paul](name)
-      - nom de réservation : [Bernard](name)
       - c'est [Alice](name)
       - écris [Charles](name)
       - mettre sous [Éléonore](name)
-      - réservation pour [Thomas](name)
 
   - intent: provide_phone
     examples: |
@@ -211,20 +157,7 @@ nlu:
       - où est ma réservation ?
       - voir ma réservation
       - affiche ma réservation
-      - vérifie ma réservation
-
-  - intent: cancel_reservation
-    examples: |
-      - je veux annuler ma réservation
-      - annule la réservation
-      - supprime ma réservation
-      - désinscris ma table
-      - annulation de ma réservation
-      - j'aimerais annuler
-      - retire ma réservation
-      - annule ma table
-      - cancel reservation
-      - mets fin à ma réservation
+      - verifier ma réservation
 
   - intent: provide_reservation_number
     examples: |
@@ -238,45 +171,6 @@ nlu:
       - référence [JKL345](reservation_number)
       - id [MNO678](reservation_number)
       - mon code de réservation : [PQR901](reservation_number)
-
-  - intent: show_menu
-    examples: |
-      - quel est le menu du jour ?
-      - montre-moi le menu
-      - menu du jour
-      - que proposez-vous aujourd'hui ?
-      - plats du jour
-      - qu'y a-t-il dans le menu ?
-      - menu s'il vous plaît
-      - veux voir le menu
-      - afficher le menu
-      - menu disponible ?
-
-  - intent: show_allergens
-    examples: |
-      - quels sont les allergènes ?
-      - allergènes disponibles
-      - y a-t-il du gluten ?
-      - liste des allergènes
-      - plats sans lactose ?
-      - allergènes ?
-      - substances allergènes
-      - info allergènes
-      - présence de fruits à coque ?
-      - quels allergènes ?
-
-  - intent: show_full_menu
-    examples: |
-      - donne-moi le menu complet
-      - lien vers le menu complet
-      - où est le menu complet ?
-      - menu complet s'il vous plaît
-      - accéder au menu complet
-      - menu intégral
-      - menu entier
-      - pdf du menu complet
-      - menu complet lien
-      - télécharger le menu complet
 
   # Regex / lookup pour extraction d'entités
   - regex: date_entity
