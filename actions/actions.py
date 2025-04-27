@@ -1,12 +1,16 @@
 from typing import Any, Text, Dict, List
+
+from rasa_sdk import Action, FormValidationAction, Tracker
+from rasa_sdk.types import DomainDict
+from rasa_sdk.events import SlotSet, EventType
+
+from rasa_sdk import Action, Tracker
+from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.events import SlotSet
 import sqlite3
 import random
 import string
-
-from rasa_sdk import Action, FormValidationAction, Tracker
-from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.types import DomainDict
-from rasa_sdk.events import SlotSet, EventType
+from datetime import datetime
 
 DB_PATH = "reservation_bot.db"
 
@@ -75,36 +79,59 @@ class ValidateReservationForm(FormValidationAction):
 
 # --- Submit reservation ---
 class ActionSubmitReservation(Action):
-    def name(self) -> Text:
+
+    def name(self) -> str:
         return "action_submit_reservation"
 
-    def run(
-        self,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: DomainDict,
-    ) -> List[EventType]:
-        date = tracker.get_slot("date")
-        time = tracker.get_slot("time")
-        people = tracker.get_slot("people")
-        name = tracker.get_slot("name")
-        phone = tracker.get_slot("phone_number")
+    def generate_reservation_number(self) -> str:
+        """Génère un numéro de réservation aléatoire."""
+        return ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
 
-        # Generate reservation number
-        reservation_number = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+    async def run(self, dispatcher: CollectingDispatcher,
+                  tracker: Tracker,
+                  domain: dict):
+        # Récupérer les slots
+        date = tracker.get_slot('date')
+        time = tracker.get_slot('time')
+        people = tracker.get_slot('people')
+        name = tracker.get_slot('name')
+        phone_number = tracker.get_slot('phone_number')
+        comment = tracker.get_slot('comment')
 
-        conn = sqlite3.connect(DB_PATH)
-        cursor = conn.cursor()
-        cursor.execute(
-            "INSERT INTO reservations (reservation_number, date, people, name, phone) VALUES (?, ?, ?, ?, ?)",
-            (reservation_number, f"{date} {time}", int(people), name, phone)
-        )
-        conn.commit()
-        conn.close()
+        # Générer un numéro de réservation
+        reservation_number = self.generate_reservation_number()
 
-        dispatcher.utter_message(template="utter_slots_values")
-        dispatcher.utter_message(text=f"✅ Votre réservation est confirmée : {reservation_number}")
-        return [SlotSet("reservation_number", reservation_number)]
+        try:
+            # Connexion à la base de données
+            conn = sqlite3.connect('reservation_bot.db')
+            cursor = conn.cursor()
+
+            # Insertion dans la table reservations
+            cursor.execute("""
+                INSERT INTO reservations (reservation_number, date, people, name, phone, comment, created_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            """, (
+                reservation_number,
+                f"{date} {time}",  # date et heure combinées
+                people,
+                name,
+                phone_number,
+                comment if comment else '',
+                datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            ))
+
+            conn.commit()
+            conn.close()
+
+            # Répondre à l'utilisateur
+            dispatcher.utter_message(text=f"✅ Votre réservation est confirmée : {reservation_number}")
+
+            # Retourner aussi un SlotSet si besoin
+            return [SlotSet("reservation_number", reservation_number)]
+
+        except Exception as e:
+            dispatcher.utter_message(text=f"❌ Erreur lors de l'enregistrement de votre réservation. ({str(e)})")
+            return []
 
 # --- Add comment ---
 class ActionAddComment(Action):
