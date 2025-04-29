@@ -191,6 +191,11 @@ nlu:
     examples: |
       - "\\b0[1-9]\\d{8}\\b"
 
+  - regex: name
+    examples: |
+      - "(?i)[a-zéèàùâêîôûäëïöüÿç]+(?:[-\s][a-zéèàùâêîôûäëïöüÿç]+)*"
+
+
   - lookup: relative_date
     examples: |
       - aujourd'hui

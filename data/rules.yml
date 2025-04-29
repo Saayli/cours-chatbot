@@ -33,7 +33,6 @@ rules:
       - active_loop: null
       - action: action_submit_reservation
       - action: utter_slots_values
-      - action: utter_ask_comment
 
   - rule: consulter réservation
     steps:
